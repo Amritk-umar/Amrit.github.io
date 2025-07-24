@@ -1,0 +1,138 @@
+/* style.css */
+
+/* Global Body Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0;
+    padding: 0;
+}
+
+/* Custom Glassmorphism Effect */
+.glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 15px;
+}
+
+/* Dark mode styles */
+.dark body {
+    background-color: #1a202c; /* Dark background */
+    color: #e2e8f0; /* Light text */
+}
+
+.dark .glass-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Header Gradient */
+.dark .header-gradient {
+    background: linear-gradient(to right, #2d3748, #4a5568);
+}
+.light .header-gradient {
+    background: linear-gradient(to right, #4c51bf, #6b46c1); /* Purple to Indigo */
+}
+
+/* Footer Gradient */
+.dark .footer-gradient {
+    background: linear-gradient(to right, #2d3748, #4a5568);
+}
+.light .footer-gradient {
+    background: linear-gradient(to right, #4c51bf, #6b46c1); /* Purple to Indigo */
+}
+
+/* Text Gradient for Headings */
+.dark .text-gradient {
+    background: linear-gradient(to right, #a78bfa, #c4b5fd); /* Lighter purple for dark mode */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.light .text-gradient {
+    background: linear-gradient(to right, #6d28d9, #8b5cf6); /* Deeper purple for light mode */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Custom scroll timeline for teen journey */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #8b5cf6, #c4b5fd); /* Purple gradient line */
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+.timeline-item {
+    display: flex;
+    margin-bottom: 40px;
+    position: relative;
+}
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.timeline-content {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    /* Using Tailwind's bg-white/15 for glassmorphism, so no need for var(--card-bg) here */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin: 0 20px;
+}
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-right: 30px; /* Space for the dot */
+}
+.timeline-item:nth-child(even) .timeline-content {
+    margin-left: 30px; /* Space for the dot */
+}
+.timeline-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: #8b5cf6; /* Purple dot */
+    border-radius: 50%;
+    z-index: 10;
+    border: 3px solid white; /* White border for visibility */
+    transition: all 0.3s ease;
+}
+.dark .timeline-dot {
+    border: 3px solid #1a202c; /* Dark background border */
+}
+
+/* Mobile adjustments for timeline */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px;
+        transform: translateX(0);
+    }
+    .timeline-item {
+        flex-direction: column !important; /* Stack content vertically */
+        align-items: flex-start;
+    }
+    .timeline-content {
+        width: calc(100% - 40px);
+        margin-left: 40px !important; /* Align content to the right of the line */
+        margin-right: 0 !important;
+    }
+    .timeline-dot {
+        left: 20px;
+        transform: translate(-50%, -50%);
+    }
+}
